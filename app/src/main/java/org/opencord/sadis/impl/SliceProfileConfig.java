@@ -22,6 +22,7 @@ public class SliceProfileConfig extends BaseConfig<SliceProfileInformation> {
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new SimpleModule());
         final JsonNode entries = this.object.path(ENTRIES);
+        log.info("hello world");
         entries.forEach(entry -> {
             try {
                 result.add(mapper.readValue(entry.toString(), SliceProfileInformation.class));

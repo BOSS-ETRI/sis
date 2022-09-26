@@ -68,6 +68,9 @@ public final class UniTagInformation {
     @JsonProperty(value = "isIgmpRequired")
     private boolean isIgmpRequired;
 
+    @JsonProperty(value = "upstreamSliceProfile")
+    private String upstreamSliceProfile;
+
     public UniTagInformation() {
 
     }
@@ -79,7 +82,8 @@ public final class UniTagInformation {
                               final String upstreamBandwidthProfile, final String downstreamBandwidthProfile,
                               final String serviceName, final boolean enableMacLearning,
                               final String configuredMacAddress, final boolean isDhcpRequired,
-                              final boolean isIgmpRequired) {
+                              final boolean isIgmpRequired,
+                              final String upstreamSliceProfile) {
         this.uniTagMatch = uniTagMatch;
         this.ponCTag = ponCTag;
         this.ponSTag = ponSTag;
@@ -95,6 +99,7 @@ public final class UniTagInformation {
         this.configuredMacAddress = configuredMacAddress;
         this.isDhcpRequired = isDhcpRequired;
         this.isIgmpRequired = isIgmpRequired;
+        this.upstreamSliceProfile = upstreamSliceProfile;
     }
 
     public final VlanId getUniTagMatch() {
@@ -157,6 +162,10 @@ public final class UniTagInformation {
         return isIgmpRequired;
     }
 
+    public final String getUpstreamSliceProfile() {
+        return upstreamSliceProfile;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -212,6 +221,11 @@ public final class UniTagInformation {
                 that.downstreamBandwidthProfile != null) {
             return false;
         }
+
+        if (upstreamSliceProfile != null ? !upstreamSliceProfile.equals(that.upstreamSliceProfile) :
+                that.upstreamSliceProfile != null) {
+            return false;
+        }
         return serviceName != null ? serviceName.equals(that.serviceName) : that.serviceName == null;
     }
 
@@ -232,6 +246,7 @@ public final class UniTagInformation {
         result = 31 * result + (configuredMacAddress != null ? configuredMacAddress.hashCode() : 0);
         result = 31 * result + (isDhcpRequired ? 1 : 0);
         result = 31 * result + (isIgmpRequired ? 1 : 0);
+        result = 31 * result + (upstreamSliceProfile != null ? upstreamSliceProfile.hashCode() : 0);
         return result;
     }
 
@@ -253,6 +268,7 @@ public final class UniTagInformation {
         sb.append(", configuredMacAddress='").append(configuredMacAddress).append('\'');
         sb.append(", isDhcpRequired=").append(isDhcpRequired);
         sb.append(", isIgmpRequired=").append(isIgmpRequired);
+        sb.append(", upstreamSliceProfile=").append(upstreamSliceProfile).append('\'');
         sb.append('}');
         return sb.toString();
     }
@@ -274,6 +290,7 @@ public final class UniTagInformation {
         private String configuredMacAddress;
         private boolean isDhcpRequired;
         private boolean isIgmpRequired;
+        private String upstreamSliceProfile;
 
         public final Builder setUniTagMatch(final VlanId uniTagMatch) {
             this.uniTagMatch = uniTagMatch;
@@ -350,12 +367,17 @@ public final class UniTagInformation {
             return this;
         }
 
+        public final Builder setUpstreamSliceProfile(final String upstreamSliceProfile) {
+            this.upstreamSliceProfile = upstreamSliceProfile;
+            return this;
+        }
+
         public final UniTagInformation build() {
             return new UniTagInformation(this.uniTagMatch, this.ponCTag,
                     this.ponSTag, this.usPonCTagPriority, this.usPonSTagPriority,
                     this.dsPonCTagPriority, this.dsPonSTagPriority, this.technologyProfileId,
                     this.upstreamBandwidthProfile, this.downstreamBandwidthProfile, this.serviceName,
-                    this.enableMacLearning, this.configuredMacAddress, this.isDhcpRequired, this.isIgmpRequired);
+                    this.enableMacLearning, this.configuredMacAddress, this.isDhcpRequired, this.isIgmpRequired, this.upstreamSliceProfile);
         }
     }
 }

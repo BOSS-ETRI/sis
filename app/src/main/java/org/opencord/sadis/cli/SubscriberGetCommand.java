@@ -27,7 +27,7 @@ import org.etri.sis.SubscriberAndDeviceInformation;
  * Subscriber And Device Information Service CLI.
  */
 @Service
-@Command(scope = "onos", name = "sis", description = "Subscriber And Device Information Service CLI command")
+@Command(scope = "boss", name = "sis", description = "Subscriber And Device Information Service CLI command")
 public class SubscriberGetCommand extends AbstractShellCommand {
 
     @Argument(index = 0, name = "ID", description = "subscriber ID", required = true, multiValued = false)

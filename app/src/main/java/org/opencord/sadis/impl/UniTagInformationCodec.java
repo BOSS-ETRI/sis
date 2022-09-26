@@ -38,10 +38,12 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
     private static final String MAC = "configuredMacAddress";
     private static final String DHCP_REQ = "isDhcpRequired";
     private static final String IGMP_REQ = "isIgmpRequired";
+    private static final String US_SP = "upstreamSliceProfile";
     private static final int NO_PCP = -1;
     private static final int NO_TP = -1;
     private static final String EMPTY_BP = "";
     private static final String EMPTY_SN = "";
+    private static final String EMPTY_SP = "";
     private static final boolean DEFAULT_MAC_LEARN = false;
     private static final String EMPTY_MAC = "";
     private static final boolean DEFAULT_DHCP_REQ = false;
@@ -64,7 +66,8 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                 .put(MAC_LEARN, entry.getEnableMacLearning())
                 .put(MAC, entry.getConfiguredMacAddress())
                 .put(DHCP_REQ, entry.getIsDhcpRequired())
-                .put(IGMP_REQ, entry.getIsIgmpRequired());
+                .put(IGMP_REQ, entry.getIsIgmpRequired())
+                .put(US_SP, entry.getUpstreamSliceProfile());
     }
 
     @Override
@@ -103,7 +106,9 @@ public class UniTagInformationCodec extends JsonCodec<UniTagInformation> {
                 .setIsDhcpRequired(json.get(DHCP_REQ) == null ? DEFAULT_DHCP_REQ :
                         json.get(DHCP_REQ).asBoolean())
                 .setIsIgmpRequired(json.get(IGMP_REQ) == null ? DEFAULT_IGMP_REQ :
-                        json.get(IGMP_REQ).asBoolean());
+                        json.get(IGMP_REQ).asBoolean())
+                .setUpstreamSliceProfile(json.get(US_SP) == null ? EMPTY_SP :
+                        json.get(US_SP).asText());
 
         return tagInfoBuilder.build();
     }

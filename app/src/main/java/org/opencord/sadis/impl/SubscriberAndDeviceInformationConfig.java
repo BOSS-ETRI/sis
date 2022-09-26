@@ -104,6 +104,7 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
     private static final String IS_DHCP_REQ = "isDhcpRequired";
     private static final String IS_IGMP_REQ = "isIgmpRequired";
     private static final String MAC_ADDRESS = "configuredMacAddress";
+    private static final String US_SP = "upstreamSliceProfile";
 
     public List<SubscriberAndDeviceInformation> getEntries() {
         List<SubscriberAndDeviceInformation> result = new ArrayList<>();
@@ -151,6 +152,7 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
                 throws IOException {
             ObjectCodec oc = jp.getCodec();
             JsonNode node = oc.readTree(jp);
+            log.info(node.toString());
             return getUniTagInformation(node);
         }
     }
@@ -182,6 +184,8 @@ public class SubscriberAndDeviceInformationConfig extends BaseConfig<SubscriberA
                 .setIsIgmpRequired(node.get(IS_IGMP_REQ) == null ? false : node.get(IS_IGMP_REQ).asBoolean())
                 .setConfiguredMacAddress(node.get(MAC_ADDRESS) == null ? MacAddress.NONE.toString() :
                         node.get(MAC_ADDRESS).asText())
+                .setUpstreamSliceProfile(node.get(US_SP) == null ? null
+                        : node.get(US_SP).asText())
                 .build();
     }
 }

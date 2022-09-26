@@ -25,9 +25,12 @@ public class SliceProfileCodec extends JsonCodec<SliceProfileInformation> {
     public ObjectNode encode(SliceProfileInformation entry, CodecContext context) {
         return context.mapper().createObjectNode()
                 .put("id", entry.id())
-                .put("serviceType", entry.serviceType())
-                .put("dbaType", entry.dbaType())
-                .put("technologyProfileId", entry.technologyProfileId());
+                .put("deviceId", entry.deviceId())
+                .put("portId", entry.portId())
+                .put("tConts", entry.trafficContainers())
+                .put("cir", entry.committedInformationRate())
+                .put("dbaType", entry.dbaType());
     }
 
 }
+

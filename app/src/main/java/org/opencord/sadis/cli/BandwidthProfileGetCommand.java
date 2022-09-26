@@ -27,7 +27,7 @@ import org.etri.sis.SadisService;
  * Bandwidth profile information service CLI.
  */
 @Service
-@Command(scope = "onos", name = "bandwidthProfile", description = "Bandwidth profile information service CLI command")
+@Command(scope = "boss", name = "bandwidthProfile", description = "Bandwidth profile information service CLI command")
 public class BandwidthProfileGetCommand extends AbstractShellCommand {
 
     @Argument(index = 0, name = "ID", description = "bandwidthProfile ID", required = true, multiValued = false)
